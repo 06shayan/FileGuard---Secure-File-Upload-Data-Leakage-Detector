@@ -1,27 +1,26 @@
 # 🛡️ FileGuard
 
-**Client‑Side Secure File Analyzer & Data Leak Prevention**
+**Client-Side Secure File Analyzer & Data Leak Prevention**
 
-FileGuard is a browser‑based cybersecurity tool that scans files for sensitive information (PII), validates them against configurable security policies, and gives you a real‑time risk assessment — **before** your data ever leaves your device.
+FileGuard is a browser-based cybersecurity project that analyzes files for sensitive information before they are uploaded or shared. The application scans files locally in the browser, detects common types of personally identifiable information (PII), verifies file integrity using SHA-256 hashing, and evaluates the overall security risk based on configurable policies.
 
-Inspired by Microsoft Defender and modern DLP dashboards, FileGuard uses the Web Crypto API, FileReader, and RegEx to perform all analysis locally. No backend, no uploads, no leakage. It’s a practical demonstration of how to prevent accidental data exposure at the very edge — your browser.
+The project demonstrates how browser APIs such as the FileReader API and Web Crypto API can be used to build privacy-focused security tools without requiring a backend or transmitting user data.
 
-> ⚠️ This is a portfolio / educational project, not a production security product. The scanning engine is rule‑based and runs entirely in the browser.
+> ⚠️ This is an educational and portfolio project. All analysis is performed locally in the browser using rule-based detection techniques.
 
 ---
 
 ## ✨ Features
 
-- **PII Detection** — RegEx‑based scanning for emails, SSNs, credit card numbers, phone numbers, and IPs.
-- **SHA‑256 File Hashing** — integrity verification via the Web Crypto API.
-- **Risk Scoring** — instant 0‑100 score with severity labels and actionable recommendations.
-- **Configurable Security Policies** — adjust max file size, allowed MIME types, blocked extensions, and risk thresholds directly in the UI.
-- **Client‑Side Only** — file content never leaves your browser; all processing uses local Web APIs.
-- **Animated Scan Experience** — terminal‑style scan log with typewriter effect, skeleton loaders, and Framer Motion page transitions.
-- **Dark Cyber‑themed UI** — Microsoft Defender‑inspired design with a glowing landing page, tabbed navigation, and professional card layouts.
-- **Scan History** — persistent storage via `localStorage`; view past scans with full metadata and risk scores.
-- **Help & Learn Page** — explains how the tool works, technologies used, and live policy display.
-- **File Preview** — shows a snippet of text‑based files before scanning.
+* Scan files locally without uploading them to a server
+* Detect common PII patterns including email addresses, phone numbers, IP addresses, credit card numbers, and Social Security numbers
+* Generate SHA-256 file hashes using the Web Crypto API
+* Calculate a security risk score with severity levels and recommendations
+* Configure security policies such as maximum file size, allowed file types, blocked extensions, and risk thresholds
+* Preview supported text files before scanning
+* View scan history stored locally using `localStorage`
+* Animated scanning workflow with terminal-style scan logs and smooth UI transitions
+* Help page explaining the scanning process, technologies, and security policies
 
 ---
 
@@ -32,7 +31,7 @@ Inspired by Microsoft Defender and modern DLP dashboards, FileGuard uses the Web
 <details>
 <summary>🏠 Home Page</summary>
 
-![Home Page](screenshots/home.png)
+![Home Page](./screenshots/home.PNG)
 </details>
 
 <details>
@@ -65,123 +64,116 @@ Inspired by Microsoft Defender and modern DLP dashboards, FileGuard uses the Web
 ![History](screenshots/help.png)
 </details>
 
+
 ---
 
 ## 🖥️ Tech Stack
 
-- **React 18** + **Vite**
-- **CSS** (custom dark theme, no framework)
-- **Framer Motion** (animations)
-- **React Icons** (Feather icon set)
-- **Web Crypto API** (SHA‑256)
-- **FileReader API** (local file reading)
-- **RegEx** (PII detection)
+* React 18
+* Vite
+* CSS
+* Framer Motion
+* React Icons
+* Web Crypto API
+* FileReader API
+* JavaScript Regular Expressions (RegEx)
 
-Frontend‑only. No backend, no database, no authentication. Everything runs client‑side.
+Frontend only. No backend, database, or authentication is required. All processing is performed locally in the user's browser.
 
 ---
 
 ## 🚀 Getting Started
 
-**Prerequisites:** Node.js ≥ 16
+**Prerequisites:** Node.js installed on your machine.
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/fileguard.git
+git clone <your-repository-url>
+
+# Enter the project directory
 cd fileguard
 
 # Install dependencies
 npm install
 
-# Run the development server
+# Start the development server
 npm run dev
-Open the local URL (usually http://localhost:5173).
+```
 
-To build for production:
+Open the local URL displayed in your terminal (typically `http://localhost:5173`).
 
-bash
+To create a production build:
+
+```bash
 npm run build
-npm preview
-📖 How It Works
-Select a file — drag & drop or browse. The app validates size, type, and extension against your active security policies.
+npm run preview
+```
 
-Preview — see a quick text extract (for text‑based files) before you commit to a scan.
+---
 
-Scan — click “Scan File”. A simulated terminal log appears, while behind the scenes the file is:
+## 📖 How It Works
 
-Hashed with SHA‑256 (Web Crypto)
+1. Select or drag a file into the application.
+2. The file is validated against the configured security policies.
+3. Supported text files can be previewed before scanning.
+4. During analysis, the application:
 
-Read as text (FileReader)
+   * Generates a SHA-256 hash using the Web Crypto API
+   * Reads the file locally using the FileReader API
+   * Searches for sensitive information using RegEx-based detection
+   * Calculates an overall security risk score
+5. Results are presented with detected findings, file metadata, and recommendations.
+6. Completed scans are stored locally so previous analyses can be reviewed later.
 
-Scanned with RegEx patterns for PII
+---
 
-Risk‑scored based on findings
+## 📂 Project Structure
 
-Review Results — after a minimum 2‑second scanning animation, the results smoothly animate in:
-
-Analysis panel with findings and metadata
-
-Risk gauge + severity donut chart
-
-Privacy assessment (GDPR relevance)
-
-Upload (simulated) — optionally mark the scan as “upload complete” to demonstrate the full workflow.
-
-You can visit the History tab to revisit past scans, the Settings tab to change detection rules, or the Help page for a walkthrough.
-
-📂 Project Structure
-text
+```text
 src/
 ├── components/
-│   ├── Navbar.jsx
-│   ├── TabNav.jsx
-│   ├── HomePage.jsx          # Landing page with hero and feature grid
-│   ├── HelpPage.jsx          # How it works + tech + policies
-│   ├── UploadPanel/          # Core scanning flow
-│   │   ├── index.jsx
-│   │   ├── FileDropZone.jsx  # Drag & drop with glow
-│   │   ├── FileInfo.jsx
-│   │   └── FilePreview.jsx
-│   ├── ScanLog.jsx           # Typewriter terminal log
+│   ├── UploadPanel/
 │   ├── AnalysisPanel.jsx
-│   ├── RiskPanel.jsx         # Risk score + gauge + donut + actions
-│   ├── RiskGauge.jsx         # SVG semi‑circular gauge
-│   ├── SeverityDonut.jsx     # SVG donut chart
-│   ├── PrivacyPanel.jsx
 │   ├── HistoryPanel.jsx
+│   ├── HelpPage.jsx
+│   ├── HomePage.jsx
+│   ├── Navbar.jsx
+│   ├── PrivacyPanel.jsx
+│   ├── RiskGauge.jsx
+│   ├── RiskPanel.jsx
+│   ├── ScanLog.jsx
 │   ├── SettingsPanel.jsx
-│   └── Skeleton.jsx          # Shimmer loading placeholder
+│   └── Skeleton.jsx
 ├── context/
-│   └── AppContext.jsx        # Global state (phase, policies, history)
+│   └── AppContext.jsx
 ├── utils/
-│   └── fileAnalyzer.js       # Core scanning, hashing, RegEx engine
-├── securityPolicies.js       # Default policies & PII patterns
-├── App.jsx                   # Tab routing + AnimatePresence
-├── App.css                   # Full dark theme
+│   └── fileAnalyzer.js
+├── securityPolicies.js
+├── App.jsx
 └── main.jsx
-🗺️ Future Enhancements
-Real backend upload with Web Workers for heavy scanning
+```
 
-More advanced PII patterns (IBAN, passport numbers, etc.)
+---
 
-“Redact & Download” feature that strips detected PII from text files
+## 🗺️ Future Enhancements
 
-Multi‑file batch scanning
+* Support additional PII patterns such as passport numbers and IBANs
+* Batch scanning for multiple files
+* Automatic redaction of detected sensitive information
+* Background scanning using Web Workers
+* Optional AI-assisted content classification using a local model
 
-Integration with a real threat‑intelligence feed
+---
 
-Optional AI‑powered content classification via a local model (e.g., Transformers.js)
+## 📚 References
 
-📚 References
-OWASP Top 10 for Large Language Model Applications
+* OWASP Top 10 for Large Language Model Applications
+* NIST AI Risk Management Framework
+* MDN Web Crypto API Documentation
+* MDN FileReader API Documentation
 
-NIST AI Risk Management Framework
+---
 
-MDN Web Crypto API
+## 📄 License
 
-FileReader API
-
-Regular Expressions for PII detection
-
-📄 License
-This project is for educational and portfolio purposes. Feel free to fork, modify, and learn from it.
+This project is intended for educational and portfolio purposes.
