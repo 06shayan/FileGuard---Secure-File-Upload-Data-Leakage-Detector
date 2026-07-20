@@ -37,33 +37,32 @@ The project demonstrates how browser APIs such as the FileReader API and Web Cry
 <details>
 <summary>🔎 Scanning in Progress</summary>
 
-![Scanning](screenshots/scanning.png)
+![Scanning](./screenshots/scanning.PNG)
 </details>
 
 <details>
 <summary>📊 Results – Risk Assessment</summary>
 
-![Results](screenshots/results.png)
+![Results](./screenshots/results.PNG)
 </details>
 
 <details>
 <summary>⚙️ Settings</summary>
 
-![Settings](screenshots/settings.png)
+![Settings](./screenshots/settings.PNG)
 </details>
 
 <details>
 <summary>📚 History</summary>
 
-![History](screenshots/history.png)
+![History](./screenshots/history.PNG)
 </details>
 
 <details>
 <summary>📚 Help</summary>
 
-![History](screenshots/help.png)
+![History](./screenshots/help.PNG)
 </details>
-
 
 ---
 
