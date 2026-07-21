@@ -87,7 +87,7 @@ Frontend only. No backend, database, or authentication is required. All processi
 
 ```bash
 # Clone the repository
-git clone <your-repository-url>
+git clone https://github.com/06shayan/FileGuard---Secure-File-Upload-Data-Leakage-Detector.git
 
 # Enter the project directory
 cd fileguard
@@ -151,8 +151,6 @@ src/
 ├── App.jsx
 └── main.jsx
 ```
-
----
 
 ## 🗺️ Future Enhancements
 
